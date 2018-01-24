@@ -79,4 +79,34 @@ describe('Campaigns', () => {
     assert(request);
     assert.equal('I wanna buy stuff', request.description);
   });
+
+  it('processes requests', async () => {
+    await campaign.methods.contribute().send({
+      from: accounts[2],
+      value: web3.utils.toWei('50', 'ether'),
+    });
+
+    const description = 'I wanna buy stuff';
+    const value = web3.utils.toWei('40', 'ether');
+
+    await campaign.methods.createRequest(description, value, accounts[4]).send({
+      from: accounts[1],
+      gas: '1000000',
+    });
+
+    await campaign.methods.approveRequest(0).send({
+      from: accounts[2],
+      gas: '1000000',
+    });
+
+    await campaign.methods.finalizeRequest(0).send({
+      from: accounts[1],
+      gas: '1000000',
+    });
+
+    let balance = await web3.eth.getBalance(accounts[4]);
+    balance = web3.utils.fromWei(balance, 'ether');
+
+    assert.equal('140', balance);
+  });
 });
