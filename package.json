@@ -1,0 +1,15 @@
+{
+  "name": "blockstarter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:malimichael/blockstarter.git",
+  "author": "Mali Michael <malimccalla@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "ganache-cli": "^6.0.3",
+    "mocha": "^5.0.0",
+    "solc": "^0.4.19",
+    "web3": "1.0.0-beta.26"
+  }
+}
