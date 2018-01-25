@@ -1,6 +1,6 @@
 import web3 from './web3';
 import CampaignFactory from './build/CampaignFactory.json';
-import { adddress } from './constants';
+import { factoryAddress } from './constants';
 
 const factory = new web3.eth.Contract(
   JSON.parse(CampaignFactory.interface),
